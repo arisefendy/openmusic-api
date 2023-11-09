@@ -24,4 +24,11 @@ const mapSongsDB = ({
   albumId: album_id,
 });
 
-module.exports = { mapAlbumsDB, mapSongsDB };
+const mapPlaylistDB = ({ id, name, username }, song) => ({
+  id,
+  name,
+  username,
+  songs: song,
+});
+
+module.exports = { mapAlbumsDB, mapSongsDB, mapPlaylistDB };

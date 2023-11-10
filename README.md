@@ -6,7 +6,7 @@ Dicoding Submission Fundamental Aplikasi Back-End
 
 - [x] Registrasi dan Autentikasi Pengguna
 - [x] Pengelolaan Data Playlist
-- [] Menerapkan Foreign Key
+- [x] Menerapkan Foreign Key
 - [x] Menerapkan Data Validation
 - [x] Penanganan Eror (Error Handling)
 - [x] Pertahankan Fitur OpenMusic API versi 1
@@ -14,5 +14,5 @@ Dicoding Submission Fundamental Aplikasi Back-End
 # Kriteria Opsional
 
 - [x] Memiliki fitur kolaborator playlist
-- [] Memiliki Fitur Playlist Activities
+- [x] Memiliki Fitur Playlist Activities
 - [x] Mempertahankan Kriteria Opsional OpenMusic V1

@@ -2,10 +2,17 @@ const autoBind = require("auto-bind");
 const { mapPlaylistDB } = require("../../utils");
 
 class PlaylistSongsHandler {
-  constructor(songsService, playlistsService, playlistSongsService, validator) {
+  constructor(
+    songsService,
+    playlistsService,
+    playlistSongsService,
+    playlistSongActivitiesService,
+    validator
+  ) {
     this._songsService = songsService;
     this._playlistsService = playlistsService;
     this._playlistSongsService = playlistSongsService;
+    this._playlistSongActivitiesService = playlistSongActivitiesService;
     this._validator = validator;
 
     autoBind(this);
@@ -21,6 +28,16 @@ class PlaylistSongsHandler {
     await this._playlistsService.verifyPlaylistAccess(playlistId, credentialId);
     await this._songsService.getSongById(songId);
     await this._playlistSongsService.addPlaylistSong({ playlistId, songId });
+
+    const action = "add";
+    const time = new Date().toISOString();
+    await this._playlistSongActivitiesService.addPlaylistSongActivities({
+      playlistId,
+      songId,
+      userId: credentialId,
+      action,
+      time,
+    });
 
     const response = h.response({
       status: "success",
@@ -56,6 +73,16 @@ class PlaylistSongsHandler {
 
     await this._playlistsService.verifyPlaylistAccess(playlistId, credentialId);
     await this._playlistSongsService.deletePlaylistSong(playlistId, songId);
+
+    const action = "delete";
+    const time = new Date().toISOString();
+    await this._playlistSongActivitiesService.addPlaylistSongActivities({
+      playlistId,
+      songId,
+      userId: credentialId,
+      action,
+      time,
+    });
 
     const response = h.response({
       status: "success",

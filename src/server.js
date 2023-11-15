@@ -4,6 +4,7 @@ const path = require("path");
 const Hapi = require("@hapi/hapi");
 const Jwt = require("@hapi/jwt");
 const Inert = require("@hapi/inert");
+const config = require("./utils/config");
 const ClientError = require("./exceptions/ClientError");
 
 // albums
@@ -79,8 +80,8 @@ const init = async () => {
   const userAlbumLikesService = new UserAlbumLikesService(cacheService);
 
   const server = Hapi.server({
-    port: process.env.PORT,
-    host: process.env.HOST,
+    host: config.app.host,
+    port: config.app.port,
     routes: {
       cors: {
         origin: ["*"],

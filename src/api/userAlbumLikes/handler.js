@@ -42,7 +42,8 @@ class UserAlbumLikes {
     const { id: albumId } = request.params;
 
     await this._albumsService.getAlbumById(albumId);
-    const likes = await this._userAlbumLikesService.getAlbumLikes(albumId);
+    const { likes, source } =
+      await this._userAlbumLikesService.getAlbumLikes(albumId);
 
     const response = h.response({
       status: "success",
@@ -50,6 +51,7 @@ class UserAlbumLikes {
         likes,
       },
     });
+    if (source === "cache") response.header("X-Data-Source", "cache");
     return response;
   }
 }

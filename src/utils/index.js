@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
-const mapAlbumsDB = ({ id, name, year }, song) => ({
+const mapAlbumsDB = ({ id, name, year, cover }, song) => ({
   id,
   name,
   year,
+  coverUrl: cover,
   songs: song,
 });
 
